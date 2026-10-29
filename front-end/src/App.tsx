@@ -1,8 +1,10 @@
+import Input from "./components/Input"
+
 function App() {
   return (
-    <div className="bg-purple-500">
-      <h1>Teste Tailwind!</h1>
-    </div>
+    <p className="bg-black p-6">
+      <Input />
+    </p>
   )
 }
 
