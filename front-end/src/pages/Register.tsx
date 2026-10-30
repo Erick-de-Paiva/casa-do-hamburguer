@@ -1,5 +1,6 @@
 import { useState } from "react"
-import Input from "./components/Input"
+import Input from "../components/Input"
+import { Link } from "react-router"
 
 const Register = () => {
     const [name, setName] = useState("")
@@ -20,7 +21,9 @@ const Register = () => {
             <div className={`
                 flex justify-center items-center flex-col gap-2  
             `}>
-                <img src="./logo.png" alt="" className="mb-4" />
+                <Link to="/">
+                    <img src="./logo.png" alt="" className="mb-4" />
+                </Link>
                 <Input 
                     placeholder="Nome" 
                     onChange={(e) => setName(e.target.value)} 
