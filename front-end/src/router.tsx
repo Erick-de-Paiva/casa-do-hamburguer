@@ -6,7 +6,10 @@ import Header from './components/Header'
 
 const Layout = () => {
     return (
-        <div>
+        <div className={`
+            flex flex-col min-h-screen 
+            bg-red-500
+        `}>
             <Header />
             <Outlet />
         </div>
