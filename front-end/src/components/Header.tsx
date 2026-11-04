@@ -1,3 +1,5 @@
+import { Link } from "react-router"
+
 const Header = () => {
     return (
         <div className="bg-[#161410]">
@@ -6,13 +8,16 @@ const Header = () => {
                 w-full md:w-184.25 p-3 mx-auto    
             `}>
                 <img src="./logo.png" alt="" />
-                <div className={`
-                    flex items-center justify-center rounded-sm
-                    bg-[#F2DAAC] w-32.5 h-8.75
-                    cursor-pointer    
-                `}>
-                    Entrar
-                </div>
+
+                <Link to="/login">
+                    <div className={`
+                        flex items-center justify-center rounded-sm
+                        bg-[#F2DAAC] w-32.5 h-8.75
+                        cursor-pointer    
+                    `}>
+                        Entrar
+                    </div>
+                </Link>
             </div>
         </div>
     )
