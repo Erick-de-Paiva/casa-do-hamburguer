@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "studio": "prisma studio",
-    "dev": "node index.js"
+    "dev": "tsx --watch --env-file=.env ./index.ts"
   },
   "author": "",
   "license": "ISC",
