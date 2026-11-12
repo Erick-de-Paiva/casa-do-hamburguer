@@ -55,7 +55,7 @@ const Login = () => {
                 </Link>
 
                 <div className={`
-                    flex flex-col gap-2 mb-3    
+                    flex flex-col gap-2 mb-2    
                 `}>
                     <Input
                         type="email" 
@@ -67,7 +67,7 @@ const Login = () => {
                         type="password"
                         onChange={(e) => setPassword(e.target.value)}  
                     />
-                    <p className="font-bold text-red-500">
+                    <p className="text-center font-bold text-red-500">
                         {error}
                     </p>
                 </div>
