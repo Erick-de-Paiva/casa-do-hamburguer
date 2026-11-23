@@ -1,10 +1,21 @@
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
 import { UserContext } from "../context/UserContext"
 import { useContext } from "react"
 import { LogOut, ShoppingCart, Box, LayoutGrid, Plus } from "lucide-react"
 
 const Header = () => {
     const { user } = useContext(UserContext)
+    const location = useLocation()
+
+    const getNavItemClass = (path: string) => {
+        const baseClass = "flex justify-center items-center h-8.75 w-7.75 rounded-md border cursor-pointer"    
+
+        if(location.pathname === path) {
+            return `${baseClass} bg-[#F2DAAC] text-[#161410]`
+        } else {
+            return baseClass
+        }
+    }
 
     return (
         <div className="bg-[#161410]">
@@ -12,7 +23,9 @@ const Header = () => {
                 flex items-center justify-between 
                 w-full md:w-184.25 p-3 mx-auto    
             `}>
-                <img src="./logo.png" alt="" />
+                <Link to="/">
+                    <img src="./logo.png" alt="" />
+                </Link>
 
                 {user ? (
                     <div className="flex gap-8 items-center text-white">
@@ -20,27 +33,25 @@ const Header = () => {
                             flex gap-2 items-center 
                             text-[#F2DAAC]
                         `}>
-                            <div className={`
-                                flex justify-center items-center
-                                h-8.75 w-7.75 rounded-md border
-                                cursor-pointer    
-                            `}>
-                                <Box size={18} />
-                            </div>
-                            <div className={`
-                                flex justify-center items-center
-                                h-8.75 w-7.75 rounded-md border
-                                cursor-pointer    
-                            `}>
-                                <LayoutGrid size={18} />
-                            </div>
-                            <div className={`
-                                flex justify-center items-center
-                                h-8.75 w-7.75 rounded-md border
-                                cursor-pointer    
-                            `}>
-                                <Plus size={18} />
-                            </div>
+                            <Link to="/">
+                                <div className={getNavItemClass("/")}>
+                                    <Box size={18} />
+                                </div>
+                            </Link>
+                            <Link to="/pedidos">
+                                <div className={getNavItemClass("/pedidos")}>
+                                    <LayoutGrid size={18} />
+                                </div>
+                            </Link>
+                            <Link to="">
+                                <div className={`
+                                    flex justify-center items-center
+                                    h-8.75 w-7.75 rounded-md border
+                                    cursor-pointer    
+                                `}>
+                                    <Plus size={18} />
+                                </div>
+                            </Link>
                         </div>
 
                         <div className="relative cursor-pointer">
