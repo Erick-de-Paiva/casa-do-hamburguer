@@ -1,6 +1,10 @@
 import { Link } from "react-router"
+import { UserContext } from "../context/UserContext"
+import { useContext } from "react"
 
 const Header = () => {
+    const { user } = useContext(UserContext)
+
     return (
         <div className="bg-[#161410]">
             <div className={`
@@ -10,13 +14,17 @@ const Header = () => {
                 <img src="./logo.png" alt="" />
 
                 <Link to="/login">
-                    <div className={`
-                        flex items-center justify-center rounded-sm
-                        bg-[#F2DAAC] w-32.5 h-8.75
-                        cursor-pointer    
-                    `}>
-                        Entrar
-                    </div>
+                    {user ? (
+                        <p className="text-white">Olá, {user.name}</p>
+                    ) : (
+                        <div className={`
+                            flex items-center justify-center rounded-sm
+                            bg-[#F2DAAC] w-32.5 h-8.75
+                            cursor-pointer    
+                        `}>
+                            Entrar
+                        </div>
+                    )}
                 </Link>
             </div>
         </div>
