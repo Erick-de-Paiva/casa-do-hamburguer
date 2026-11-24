@@ -68,22 +68,22 @@ const Header = () => {
                 </Link>
 
                 {user ? (
-                    <div className="flex gap-8 items-center text-white">
-                        <div className={`
-                            flex gap-2 items-center 
-                            text-[#F2DAAC]
-                        `}>
-                            <Link to="/">
-                                <div className={getNavItemClass("/")}>
-                                    <Box size={18} />
-                                </div>
-                            </Link>
-                            <Link to="/pedidos">
-                                <div className={getNavItemClass("/pedidos")}>
-                                    <LayoutGrid size={18} />
-                                </div>
-                            </Link>
-                            <Link to="">
+                    <div className="flex gap-8 items-center text-white">                        
+                        {user.admin && (
+                            <div className={`
+                                flex gap-2 items-center 
+                                text-[#F2DAAC]
+                            `}>
+                                <Link to="/">
+                                    <div className={getNavItemClass("/")}>
+                                        <Box size={18} />
+                                    </div>
+                                </Link>
+                                <Link to="/pedidos">
+                                    <div className={getNavItemClass("/pedidos")}>
+                                        <LayoutGrid size={18} />
+                                    </div>
+                                </Link>                            
                                 <div className={`
                                     flex justify-center items-center
                                     h-8.75 w-7.75 rounded-md border
@@ -91,8 +91,8 @@ const Header = () => {
                                 `}>
                                     <Plus size={18} />
                                 </div>
-                            </Link>
-                        </div>
+                            </div>
+                        )}
 
                         <div className="relative cursor-pointer">
                             <ShoppingCart size={20} />

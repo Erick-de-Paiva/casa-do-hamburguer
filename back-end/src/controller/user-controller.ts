@@ -32,7 +32,8 @@ export const login = async (req: Request, res: Response) => {
             id: user.id,
             name: user.name,
             email: user.email,
-            cep: user.cep
+            cep: user.cep,
+            admin: user.admin
         }
 
         if(!process.env.JWT_SECRET) {
