@@ -10,16 +10,37 @@ const Header = () => {
     console.log(location.pathname)
 
     const handleAuthUser = async () => {
-        const response = await fetch("http://localhost:3000/me", {
-            credentials: "include"
-        })
+        try {
+            const response = await fetch("http://localhost:3000/me", {
+                credentials: "include"
+            })
 
-        if (response.status !== 200) {
+            if (response.status !== 200) {
+                return
+            }
+
+            const data = await response.json()
+            setUser(data)
+        } catch (error) {
             return
         }
+    }
+    
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/logout", {
+                credentials: "include",
+                method: "POST"
+            })
 
-        const data = await response.json()
-        setUser(data)
+            if (!response.ok) {
+                return
+            }
+
+            setUser(null)
+        } catch (error) {
+            return
+        }
     }
 
     useEffect(() => {
@@ -85,7 +106,11 @@ const Header = () => {
 
                         <div className="flex items-center gap-2">
                             <p>{user.name}</p> 
-                            <LogOut size={20} className="cursor-pointer" />
+                            <LogOut 
+                                size={20} 
+                                className="cursor-pointer" 
+                                onClick={() => handleLogout()} 
+                            />
                         </div>
                     </div>
                 ) : (

@@ -103,3 +103,12 @@ export const auth = async (req: Request, res: Response) => {
         return
     }
 }
+
+export const logout = async (req: Request, res: Response) => {
+    const { user } = req.cookies
+
+    if (user) {
+        res.clearCookie("user")
+        res.json({ messase: "Usuário deslogado" })
+    }
+}
