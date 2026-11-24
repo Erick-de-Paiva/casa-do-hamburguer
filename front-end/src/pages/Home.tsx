@@ -6,7 +6,7 @@ const Home = () => {
             mx-auto w-full px-3 md:w-184.25 md:px-0 
             text-white
         `}>
-            <div className="flex gap-2 py-4">
+            <div className="flex gap-2 my-1 md:my-3">
                 <div className={`
                     flex justify-center items-center
                     h-7 w-24 md:h-9 md:w-32 rounded-md

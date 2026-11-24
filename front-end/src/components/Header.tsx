@@ -71,7 +71,7 @@ const Header = () => {
                     <div className="flex gap-8 items-center text-white">                        
                         {user.admin && (
                             <div className={`
-                                flex gap-2 items-center 
+                                md:flex hidden gap-2 items-center 
                                 text-[#F2DAAC]
                             `}>
                                 <Link to="/">
