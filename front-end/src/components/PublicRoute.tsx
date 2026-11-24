@@ -1,7 +1,8 @@
-import { useEffect, type ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import { useNavigate } from "react-router"
 
 const PublicRoute = ({ children }: { children: ReactNode }) => {
+    const [isChecking, setIsChecking] = useState(true)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -13,13 +14,18 @@ const PublicRoute = ({ children }: { children: ReactNode }) => {
             
             if (userCookie) {
                 navigate("/", { replace: true })
+                return
             }
         }
+
+        setIsChecking(false)
     }, [navigate])
 
-    return (
-        <div>{children}</div>
-    )
+    if (isChecking) {
+        return <p>Carregando</p>
+    }
+
+    return <div>{children}</div>
 }
 
 export default PublicRoute
