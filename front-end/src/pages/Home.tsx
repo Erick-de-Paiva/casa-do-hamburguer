@@ -47,10 +47,13 @@ const Home = () => {
                 </div>
             </div>
 
-            <h1 className="mb-2 uppercase font-bold text-[#F2DAAC]">
+            <h1 className={`
+                mt-2 mb-2 md:mt-4 md:mb-4 
+                text-[#F2DAAC] uppercase font-bold 
+            `}>
                 {category}
             </h1>
-            <div className="flex flex-col gap-1 md:gap-3">
+            <div className="flex flex-col gap-2 md:gap-3">
                 <Product />
                 <Product />
                 <Product />
@@ -58,7 +61,6 @@ const Home = () => {
                 <Product />
             </div>       
         </div>
-
     )
 }
 
