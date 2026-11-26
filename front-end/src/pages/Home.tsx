@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Product from "../components/Product"
+import type { ProductType } from "../types/Product"
 
 const Home = () => {
     const [category, setCategory] = useState("Hambúrguer")
+    const [products, setProducts] = useState<ProductType[]>([])
 
     const handleChangeCategory = (newCategory: string) => {
         setCategory(newCategory)
@@ -20,6 +22,22 @@ const Home = () => {
             return elementoNaoSelecionado
         }    
     }  
+
+    const getProduct = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/get-products")
+
+            const data = await response.json()
+            setProducts(data)
+        } catch (error) {
+            console.log(error)
+            return
+        }
+    }
+
+    useEffect(() => {
+        getProduct()
+    }, [])
 
     return (
         <div className={`
@@ -54,11 +72,16 @@ const Home = () => {
                 {category}
             </h1>
             <div className="flex flex-col gap-2 md:gap-3">
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+                {products.map(product => (
+                    <Product 
+                        id={product.id} 
+                        description={product.description}
+                        img={product.img}
+                        name={product.name}
+                        price={product.price}
+                        key={product.id}
+                    />
+                ))}
             </div>       
         </div>
     )
