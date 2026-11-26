@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CalendarFold, Clock, ClockExclamationPoint, User } from "lucide-react"
+import CardPedido from "../components/CardPedido"
 
 const Pedidos = () => {
     const [category, setCategory] = useState("Pendente")
@@ -48,50 +48,14 @@ const Pedidos = () => {
             </div>   
 
             <div className="grid grid-cols-3 gap-3">
-                <div className={`
-                    p-2 rounded-md
-                    bg-[#F2DAAC] text-[#32343E]    
-                `}>
-                    <div className="flex justify-between">
-                        <p className="font-bold">#1</p>
-                        <select name="" id="" className="font-bold">
-                            <option 
-                                value="" 
-                                defaultChecked
-                                disabled
-                            >
-                                Pendente
-                            </option>
-                            <option value="">Retirado</option>
-                            <option value="">Cancelado</option>
-                        </select>
-                    </div>
-                    <div className="flex flex-col mt-2 gap-2">
-                        <div className="flex items-center gap-2">
-                            <User size={16} />
-                            <p className="text-sm">Erick</p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <CalendarFold size={16} />
-                            <p className="text-sm">16/11/2026</p>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="flex items-center gap-2">
-                                <Clock size={16} />
-                                <p className="text-sm">15:00</p>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <ClockExclamationPoint size={16} />
-                                <p className="text-sm">16:00</p>
-                            </div>          
-                        </div>
-
-                        <div className="mt-1 h-0.5 w-full bg-[#32343E]"></div>
-
-                        <p className="text-right text-lg font-bold">124,78</p>                        
-                    </div>    
-                </div>       
+                <CardPedido 
+                    id={7} 
+                    name="Erick" 
+                    date="26/11/2026" 
+                    orderTime="16:00"
+                    deliveredTime="17:00"
+                    total={666.66}
+                />      
             </div>    
         </div>
     )
