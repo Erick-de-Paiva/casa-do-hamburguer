@@ -1,5 +1,6 @@
 import { ShoppingCart } from "lucide-react"
 import type { ProductType } from "../types/Product"
+import { formatterPrice } from "../utils/formatterPrice"
 
 const Product = ({ id, name, description, price, img }: ProductType) => {
     return (
@@ -23,7 +24,9 @@ const Product = ({ id, name, description, price, img }: ProductType) => {
                         {description}
                     </p>
                     <div className="flex items-center justify-end gap-2">
-                        <p className="text-[#F2DAAC]">R${price}</p>
+                        <p className="text-[#F2DAAC]">
+                            {formatterPrice(price)}
+                        </p>
                         <ShoppingCart 
                             size={18} 
                             className="cursor-pointer" 
