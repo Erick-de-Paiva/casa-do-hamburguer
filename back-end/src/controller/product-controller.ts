@@ -19,7 +19,13 @@ export const getProducts = async (req: Request, res: Response) => {
 
 export const deleteProduct = async (req: Request, res: Response) => {
     try {
+        const { user } = req
         const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id
+
+        if (!user?.admin) {
+            res.status(400).json({ message: "Usuário não autorizado" })
+            return
+        }
 
         if (!id) {
             res.status(400).json({ message: "ID não encontrado" })

@@ -13,4 +13,4 @@ router.post("/logout", authMiddleware, logout)
 
 // Rotas de produto
 router.get("/get-products", getProducts)
-router.delete("/delete-product/:id", deleteProduct)
+router.delete("/delete-product/:id", authMiddleware, deleteProduct)
