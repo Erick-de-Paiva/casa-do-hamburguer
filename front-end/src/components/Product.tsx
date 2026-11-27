@@ -4,8 +4,50 @@ import { formatterPrice } from "../utils/formatterPrice"
 import { UserContext } from "../context/UserContext"
 import { useContext } from "react"
 
-const Product = ({ id, name, description, price, img, category }: ProductType) => {
+const Product = ({ 
+    id, 
+    name, 
+    description, 
+    price, 
+    img, 
+    category,
+    setProducts 
+}: ProductType) => {
     const { user } = useContext(UserContext)
+
+    const handleDeleteProduct = async (id: string) => {
+        try {
+            if (!id) {
+                return
+            }
+
+            const response = await fetch(`http://localhost:3000/delete-product/${id}`, {
+                method: "DELETE",
+                credentials: "include"
+            })
+
+            if (!response.ok) {
+                return
+            }
+
+            getProduct()
+        } catch (error) {
+            console.log(error)
+            return
+        }
+    }
+
+    const getProduct = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/get-products")
+
+            const data = await response.json()
+            setProducts(data)
+        } catch (error) {
+            console.log(error)
+            return
+        }
+    }
 
     return (
         <div>
@@ -24,7 +66,7 @@ const Product = ({ id, name, description, price, img, category }: ProductType) =
                         </p>
                         {user?.admin && (
                             <div 
-                                onClick={() => alert(id)} 
+                                onClick={() => handleDeleteProduct(id)} 
                                 className={`
                                     flex items-center rounded-md border px-1
                                     text-red-500 text-xs uppercase
