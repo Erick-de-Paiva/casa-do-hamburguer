@@ -16,3 +16,31 @@ export const getProducts = async (req: Request, res: Response) => {
         return
     }
 }
+
+export const deleteProduct = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+
+        if (!id) {
+            res.status(400).json({ message: "ID não encontrado" })
+            return
+        }
+
+        const deletedProduct = await prisma.product.delete({
+            where: { id: id }
+        })
+
+        if (!deletedProduct) {
+            res.status(404).json({ message: "Erro ao deletar produto" })
+            return
+        }
+    } catch (error: any) {
+        if (error.code === "P2025") {
+            res.json({ message: "Produto não encontrado" })
+            return
+        }
+
+        res.status(500).json({ message: "Erro no servidor" })
+        return
+    }
+}
