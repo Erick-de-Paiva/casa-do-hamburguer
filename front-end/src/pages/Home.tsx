@@ -79,6 +79,7 @@ const Home = () => {
                         img={product.img}
                         name={product.name}
                         price={product.price}
+                        category={product.category}
                         key={product.id}
                     />
                 ))}

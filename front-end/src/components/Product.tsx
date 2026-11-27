@@ -2,7 +2,7 @@ import { ShoppingCart } from "lucide-react"
 import type { ProductType } from "../types/Product"
 import { formatterPrice } from "../utils/formatterPrice"
 
-const Product = ({ id, name, description, price, img }: ProductType) => {
+const Product = ({ id, name, description, price, img, category }: ProductType) => {
     return (
         <div>
             <div className="flex gap-2">
