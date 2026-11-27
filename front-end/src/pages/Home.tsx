@@ -35,6 +35,10 @@ const Home = () => {
         }
     }
 
+    const filteredProduct = products.filter((product) => {
+        return product.category === category
+    })
+
     useEffect(() => {
         getProduct()
     }, [])
@@ -72,7 +76,7 @@ const Home = () => {
                 {category}
             </h1>
             <div className="flex flex-col gap-2 md:gap-3">
-                {products.map(product => (
+                {filteredProduct.map(product => (
                     <Product 
                         id={product.id} 
                         description={product.description}
@@ -83,6 +87,7 @@ const Home = () => {
                         key={product.id}
                     />
                 ))}
+                {filteredProduct.length === 0 && <p>Não há produtos desta categoria!</p>}
             </div>       
         </div>
     )
