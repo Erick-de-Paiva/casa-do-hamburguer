@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router"
 import { UserContext } from "../context/UserContext"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LogOut, ShoppingCart, Box, LayoutGrid, Plus } from "lucide-react"
+import Cart from "./Cart"
 
 const Header = () => {
+    const [showCart, setShowCart] = useState<boolean>(false)
     const { user, setUser } = useContext(UserContext)
     const location = useLocation()
-
-    console.log(location.pathname)
 
     const handleAuthUser = async () => {
         try {
@@ -59,6 +59,7 @@ const Header = () => {
 
     return (
         <div className="bg-[#161410]">
+            {showCart && <Cart />}
             <div className={`
                 flex items-center justify-between 
                 w-full md:w-184.25 p-3 mx-auto    
@@ -95,7 +96,10 @@ const Header = () => {
                         )}
 
                         <div className="relative cursor-pointer">
-                            <ShoppingCart size={20} />
+                            <ShoppingCart 
+                                size={20} 
+                                onClick={() => setShowCart(!showCart)} 
+                            />
                             <p className={`
                                 flex justify-center items-center
                                 rounded-full h-5 w-5 
